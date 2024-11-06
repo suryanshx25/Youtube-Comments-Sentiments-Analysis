@@ -51,7 +51,7 @@ def load_model_and_vectorizer(model_name, model_version, vectorizer_path):
     return model, vectorizer
 
 # Initialize the model and vectorizer
-model, vectorizer = load_model_and_vectorizer("Youtube-Comments-Sentiment-Analyzer", "1", "./tfidf_vectorizer.pkl")
+model, vectorizer = load_model_and_vectorizer("Youtube-Comments-Sentiment-Analyzer", "2", "./tfidf_vectorizer.pkl")
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -78,4 +78,4 @@ def predict():
     return jsonify(response)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8000)
