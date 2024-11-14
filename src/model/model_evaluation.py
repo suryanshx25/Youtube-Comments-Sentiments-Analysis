@@ -152,18 +152,14 @@ def main():
             X_test_tfidf = vectorizer.transform(test_data['clean_comment'].values)
             y_test = test_data['category'].values
 
-            # Create a DataFrame for signature inference (using first few rows as an example)
-            input_example = pd.DataFrame(X_test_tfidf.toarray()[:5], columns=vectorizer.get_feature_names_out())  # <--- Added for signature
+            # Infer the signature without using input_example
+            signature = infer_signature(X_test_tfidf, model.predict(X_test_tfidf[:5]))
 
-            # Infer the signature
-            signature = infer_signature(input_example, model.predict(X_test_tfidf[:5]))  # <--- Added for signature
-
-            # Log model with signature
+            # Log model without input_example
             mlflow.sklearn.log_model(
                 model,
                 "lgbm_model",
-                signature=signature,  # <--- Added for signature
-                input_example=input_example  # <--- Added input example
+                signature=signature  # <--- Only logging the signature
             )
 
             # Save model info
