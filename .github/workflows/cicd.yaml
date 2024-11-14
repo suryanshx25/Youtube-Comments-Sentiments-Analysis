@@ -100,6 +100,14 @@ jobs:
         run: |
           nohup python flask_app/app.py &
 
+
+      - name: Start Flask API server
+        run: |
+          nohup flask run --host=0.0.0.0 --port=5000 &
+          sleep 5  # Wait for server to start
+
       - name: Run Flask API tests
+        env:
+          BASE_URL: "http://localhost:5000"
         run: |
           pytest scripts/test_flask_api.py
