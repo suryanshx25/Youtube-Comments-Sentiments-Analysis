@@ -3,7 +3,7 @@ import pytest
 from mlflow.tracking import MlflowClient
 
 # Set your remote tracking URI
-mlflow.set_tracking_uri("http://ec2-3-108-217-173.ap-south-1.compute.amazonaws.com:5000/")
+mlflow.set_tracking_uri("http://ec2-3-115-78-204.ap-northeast-1.compute.amazonaws.com:5000/")
 
 @pytest.mark.parametrize("model_name, stage", [
     ("Youtube-Comments-Sentiment-Analyzer", "staging"),])
